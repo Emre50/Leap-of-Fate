@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://uiywxhullfej"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_0kxfy"]
+[ext_resource type="PackedScene" uid="uid://bfdc8b2rlpl1a" path="res://scenes/character_body_2d.tscn" id="1_s5a3v"]
+[ext_resource type="PackedScene" uid="uid://drdkicuvqmc24" path="res://scenes/jump_ped.tscn" id="3_lf0vw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ea5l7"]
+size = Vector2(1997, 85)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iisnx"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhiea"]
+size = Vector2(4610, 237)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_0kxfy")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(63.5, 250.5)
+shape = SubResource("RectangleShape2D_ea5l7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(67, 235)
+scale = Vector2(15.5156, 0.375)
+texture = SubResource("CompressedTexture2D_iisnx")
+
+[node name="Player" parent="." instance=ExtResource("1_s5a3v")]
+position = Vector2(339, 76)
+
+[node name="jump_ped" parent="." instance=ExtResource("3_lf0vw")]
+position = Vector2(240, 197)
+
+[node name="jump_ped2" parent="." instance=ExtResource("3_lf0vw")]
+position = Vector2(103, 190)
+jump_force = 500
+
+[node name="DeathZone" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(830, 479.5)
+shape = SubResource("RectangleShape2D_yhiea")
+
+[node name="Start" type="Marker2D" parent="."]
+position = Vector2(339, 76)
+
+[connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
