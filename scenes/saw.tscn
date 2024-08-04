@@ -43,7 +43,7 @@ _data = {
 "spin": SubResource("Animation_lcb74")
 }
 
-[node name="Saw" type="Node2D"]
+[node name="Saw" type="Node2D" groups=["traps"]]
 script = ExtResource("1_rfj1e")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -57,7 +57,7 @@ hframes = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_lfh8x")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["traps"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_q1r52")
 }
