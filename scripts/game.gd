@@ -3,6 +3,10 @@ extends Node2D
 @onready var start_position = $Start
 @onready var player = $Player
 
+
+func _ready():
+	var traps = get_tree().get_nodes_in_group("traps")
+
 func _on_death_zone_body_entered(body):
 	reset_player()
 

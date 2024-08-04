@@ -57,7 +57,7 @@ hframes = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_lfh8x")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["traps"]]
 libraries = {
 "": SubResource("AnimationLibrary_q1r52")
 }
