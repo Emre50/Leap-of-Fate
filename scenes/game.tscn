@@ -1,14 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://uiywxhullfej"]
+[gd_scene load_steps=9 format=3 uid="uid://uiywxhullfej"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_0kxfy"]
 [ext_resource type="PackedScene" uid="uid://bfdc8b2rlpl1a" path="res://scenes/character_body_2d.tscn" id="1_s5a3v"]
 [ext_resource type="PackedScene" uid="uid://drdkicuvqmc24" path="res://scenes/jump_ped.tscn" id="3_lf0vw"]
+[ext_resource type="PackedScene" uid="uid://b81swm0501j4t" path="res://scenes/saw.tscn" id="4_38ehe"]
+[ext_resource type="PackedScene" uid="uid://cp0l7aj48vkwb" path="res://scenes/spiked_ball.tscn" id="5_86dmv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ea5l7"]
-size = Vector2(1997, 85)
+size = Vector2(3433, 92)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iisnx"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhiea"]
 size = Vector2(4610, 237)
@@ -19,7 +20,7 @@ script = ExtResource("1_0kxfy")
 [node name="Ground" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(63.5, 250.5)
+position = Vector2(781.5, 254)
 shape = SubResource("RectangleShape2D_ea5l7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
@@ -30,10 +31,12 @@ texture = SubResource("CompressedTexture2D_iisnx")
 [node name="Player" parent="." instance=ExtResource("1_s5a3v")]
 position = Vector2(339, 76)
 
-[node name="jump_ped" parent="." instance=ExtResource("3_lf0vw")]
-position = Vector2(240, 197)
+[node name="Objects" type="Node2D" parent="."]
 
-[node name="jump_ped2" parent="." instance=ExtResource("3_lf0vw")]
+[node name="jump_ped" parent="Objects" instance=ExtResource("3_lf0vw")]
+position = Vector2(236, 190)
+
+[node name="jump_ped2" parent="Objects" instance=ExtResource("3_lf0vw")]
 position = Vector2(103, 190)
 jump_force = 500
 
@@ -48,4 +51,14 @@ shape = SubResource("RectangleShape2D_yhiea")
 [node name="Start" type="Marker2D" parent="."]
 position = Vector2(339, 76)
 
+[node name="Traps" type="Node2D" parent="."]
+
+[node name="Saw" parent="Traps" instance=ExtResource("4_38ehe")]
+position = Vector2(-104, 202)
+
+[node name="SpikedBall" parent="Traps" instance=ExtResource("5_86dmv")]
+position = Vector2(597, 195)
+
 [connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
+[connection signal="touched_player" from="Traps/Saw" to="." method="_on_saw_touched_player"]
+[connection signal="touched_player" from="Traps/SpikedBall" to="." method="_on_saw_touched_player"]

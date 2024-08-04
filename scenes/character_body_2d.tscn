@@ -202,21 +202,19 @@ size = Vector2(42, 78)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 13
+collision_mask = 29
 script = ExtResource("1_qkeqj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_skpso")
-animation = &"jump"
+animation = &"idle"
 autoplay = "idle"
-frame = 6
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 9)
 shape = SubResource("RectangleShape2D_hrh2r")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-limit_bottom = 259
+limit_bottom = 250
