@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cvcryrmo6mf77"
+path="res://.godot/imported/StockTune-Glittering Glam Nights_1723056773.mp3-a85589531b91b8f0f7525e85e71ce599.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/StockTune-Glittering Glam Nights_1723056773.mp3"
+dest_files=["res://.godot/imported/StockTune-Glittering Glam Nights_1723056773.mp3-a85589531b91b8f0f7525e85e71ce599.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

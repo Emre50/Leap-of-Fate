@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cncvvsnpsgbun"
+path="res://.godot/imported/StockTune-Heartfelt Metal Hymn_1723056985.mp3-507a2dd101c4bec05b521df86aafb816.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/StockTune-Heartfelt Metal Hymn_1723056985.mp3"
+dest_files=["res://.godot/imported/StockTune-Heartfelt Metal Hymn_1723056985.mp3-507a2dd101c4bec05b521df86aafb816.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

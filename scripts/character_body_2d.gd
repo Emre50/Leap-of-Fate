@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 var speed = 200
+var active = true
 @export var gravity = 400
 @export var jump_force = 300
 @export var friction = 10
@@ -11,13 +12,16 @@ func _physics_process(delta):
 	# Yerçekimi etkisi
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
-	# Zıplama
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		jump(jump_force)
 	
-	# Hareket girişi
-	var direction = Input.get_axis("left", "right")
+	var direction = 0
+	if active == true:
+		
+		# Zıplama
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			jump(jump_force)
+		
+		# Hareket girişi
+		direction = Input.get_axis("left", "right")
 	
 	# Karakterin yönünü ayarlama
 	if direction != 0:
@@ -38,6 +42,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func jump(force):
+	$jump.play()
 	velocity.y = -force
 
 func update_animations(direction):

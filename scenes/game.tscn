@@ -1,14 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://uiywxhullfej"]
+[gd_scene load_steps=18 format=3 uid="uid://uiywxhullfej"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_0kxfy"]
 [ext_resource type="PackedScene" uid="uid://bfdc8b2rlpl1a" path="res://scenes/character_body_2d.tscn" id="1_s5a3v"]
 [ext_resource type="PackedScene" uid="uid://ckbowavw0qcjn" path="res://scenes/backgorund.tscn" id="2_8i2iv"]
+[ext_resource type="PackedScene" uid="uid://dtq4ipip6g5b5" path="res://scenes/game_2.tscn" id="2_qw83h"]
+[ext_resource type="PackedScene" uid="uid://4hso6vjk2v3b" path="res://scenes/ui.tscn" id="3_0m0du"]
 [ext_resource type="PackedScene" uid="uid://drdkicuvqmc24" path="res://scenes/jump_ped.tscn" id="3_lf0vw"]
 [ext_resource type="PackedScene" uid="uid://b81swm0501j4t" path="res://scenes/saw.tscn" id="4_38ehe"]
 [ext_resource type="PackedScene" uid="uid://cp0l7aj48vkwb" path="res://scenes/spiked_ball.tscn" id="5_86dmv"]
 [ext_resource type="PackedScene" uid="uid://df1m55katiyi8" path="res://scenes/terrain.tscn" id="6_6qxci"]
 [ext_resource type="PackedScene" uid="uid://drbxy1w4516jv" path="res://scenes/start.tscn" id="8_i0703"]
 [ext_resource type="PackedScene" uid="uid://c7r66xrmagxto" path="res://scenes/exit.tscn" id="9_shtu1"]
+[ext_resource type="FontFile" uid="uid://bkntd7jjgv02o" path="res://assets/fonts/Kenney Pixel Square.ttf" id="10_lvktu"]
+[ext_resource type="AudioStream" uid="uid://cucuw3fg7bd0v" path="res://assets/audio/hurt.wav" id="13_jwx25"]
+[ext_resource type="AudioStream" uid="uid://cawy7rx1cbwph" path="res://assets/audio/StockTune-Glitzy Nights_1723056749.mp3" id="14_7hoqp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ea5l7"]
 size = Vector2(3433, 92)
@@ -20,6 +25,9 @@ size = Vector2(4610, 237)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_0kxfy")
+next_level = ExtResource("2_qw83h")
+
+[node name="ui" parent="." instance=ExtResource("3_0m0du")]
 
 [node name="Backgorund" parent="." instance=ExtResource("2_8i2iv")]
 
@@ -78,4 +86,37 @@ position = Vector2(253, 465)
 [node name="Exit" parent="." instance=ExtResource("9_shtu1")]
 position = Vector2(710, 304)
 
+[node name="Timer" type="Node" parent="."]
+
+[node name="TimeLabel" type="Label" parent="Timer"]
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 0.049
+anchor_right = 0.47
+anchor_bottom = 0.049
+offset_left = -105.44
+offset_top = -28.752
+offset_right = -12.4401
+offset_bottom = 6.248
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.748384, 0.268093, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.729412)
+theme_override_colors/font_outline_color = Color(0.67705, 4.81307e-07, 0.353027, 1)
+theme_override_fonts/font = ExtResource("10_lvktu")
+theme_override_font_sizes/font_size = 30
+text = "Time:"
+
+[node name="Timer" type="Timer" parent="Timer"]
+wait_time = 3.0
+one_shot = true
+
+[node name="hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_jwx25")
+
+[node name="music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_7hoqp")
+autoplay = true
+
 [connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
+[connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
+[connection signal="timeout" from="Timer/Timer" to="." method="_on_timer_timeout"]
